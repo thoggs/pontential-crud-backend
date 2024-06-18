@@ -20,7 +20,7 @@ ls -la /var/www/html/public/storage/logs
 
 # Run Laravel migrations and seeders
 php artisan migrate
-php artisan db:seed --class=DevelopersSeeder
+php artisan db:seed --class=DeveloperModelSeeder
 
 # Start Apache server
 exec apache2-foreground
