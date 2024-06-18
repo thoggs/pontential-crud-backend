@@ -9,6 +9,13 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ValidateUUID
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param Request $request
+     * @param Closure $next
+     * @return ResponseAlias
+     */
     public function handle(Request $request, Closure $next): ResponseAlias
     {
         $id = $request->route('developer');
