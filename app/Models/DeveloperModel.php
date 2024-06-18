@@ -21,6 +21,11 @@ class DeveloperModel extends Model
     protected $dateFormat = 'Y-m-d';
     public $timestamps = true;
 
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
     protected static function boot(): void
     {
         parent::boot();
@@ -37,6 +42,9 @@ class DeveloperModel extends Model
         });
     }
 
+    /**
+     * Format attributes before saving
+     */
     private function formatAttributes(): void
     {
         $this->firstName = ucfirst(strtolower($this->firstName));
@@ -47,6 +55,12 @@ class DeveloperModel extends Model
         $this->age = (int)$this->age;
     }
 
+    /**
+     * Search by terms
+     *
+     * @param Request $request
+     * @return Paginator
+     */
     public function searchByTerms(Request $request): Paginator
     {
         $query = DB::table($this->table);
@@ -85,6 +99,12 @@ class DeveloperModel extends Model
             ->paginate($request->input('perPage', 50));
     }
 
+    /**
+     * Create a developer
+     *
+     * @param Request $request
+     * @return DeveloperModel
+     */
     public function createDeveloper(Request $request): DeveloperModel
     {
         return $this->create([
@@ -98,6 +118,12 @@ class DeveloperModel extends Model
         ]);
     }
 
+    /**
+     * Update a developer
+     *
+     * @param Request $request
+     * @param string $id
+     */
     public function updateDeveloper(Request $request, string $id): void
     {
         $developer = $this::find($id);
@@ -116,12 +142,23 @@ class DeveloperModel extends Model
         }
     }
 
+    /**
+     * Delete a developer
+     *
+     * @param string $id
+     */
     public function deleteDeveloperById(string $id): void
     {
         $developer = $this::find($id);
         $developer?->delete();
     }
 
+    /**
+     * Get a developer by ID
+     *
+     * @param string $id
+     * @return Model|Collection|array|null
+     */
     public function getDeveloperById(string $id): Model|Collection|array|null
     {
         return $this::find($id);
