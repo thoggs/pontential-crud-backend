@@ -143,7 +143,6 @@ class DeveloperModel extends Model
                 'hobby' => $request->input('hobby'),
                 'birthDate' => $request->input('birthDate')
             ]);
-            $developer->formatAttributes();
             $developer->save();
         }
     }
