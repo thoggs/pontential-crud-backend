@@ -127,6 +127,7 @@ class DeveloperModel extends Model
     public function updateDeveloper(Request $request, string $id): void
     {
         $developer = $this::find($id);
+
         if ($developer) {
             $developer->fill([
                 'firstName' => $request->input('firstName'),

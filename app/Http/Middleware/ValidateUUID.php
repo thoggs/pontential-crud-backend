@@ -22,11 +22,11 @@ class ValidateUUID
 
         if ($id && !Uuid::isValid($id)) {
             return response()->json([
-                'status' => 'error',
-                'message' => [
-                    'errors' => 'Invalid ID format'
+                'success' => false,
+                'matadata' => [
+                    'message' => array('id' => ['Invalid ID format, please provide a valid UUID format.'])
                 ],
-                'model' => (array())
+                'data' => (array())
             ], ResponseAlias::HTTP_BAD_REQUEST);
         }
 
