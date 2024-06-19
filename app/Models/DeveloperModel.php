@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
 class DeveloperModel extends Model
 {
@@ -30,18 +31,26 @@ class DeveloperModel extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->formatAttributes();
+            $model->prepareAndgenerateUuid();
         });
 
         static::updating(function ($model) {
-            $model->formatAttributes();
+            $model->prepareForStorage();
         });
+    }
+
+    private function prepareAndgenerateUuid(): void
+    {
+        if (!$this->getKey()) {
+            $this->{$this->getKeyName()} = Uuid::uuid4()->toString();
+        }
+        $this->prepareForStorage();
     }
 
     /**
      * Format attributes
      */
-    private function formatAttributes(): void
+    private function prepareForStorage(): void
     {
         $this->firstName = ucfirst(strtolower($this->firstName));
         $this->lastName = ucfirst(strtolower($this->lastName));
