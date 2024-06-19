@@ -11,22 +11,18 @@ class ValidateUUID
 {
     /**
      * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @return ResponseAlias
      */
     public function handle(Request $request, Closure $next): ResponseAlias
     {
         $id = $request->route('developer');
 
-        if ($id && !Uuid::isValid($id)) {
+        if ($id && ! Uuid::isValid($id)) {
             return response()->json([
                 'success' => false,
                 'matadata' => [
-                    'message' => array('id' => ['Invalid ID format, please provide a valid UUID format.'])
+                    'message' => ['id' => ['Invalid ID format, please provide a valid UUID format.']],
                 ],
-                'data' => (array())
+                'data' => ([]),
             ], ResponseAlias::HTTP_BAD_REQUEST);
         }
 

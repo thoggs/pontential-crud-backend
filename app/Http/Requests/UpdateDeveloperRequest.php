@@ -31,23 +31,21 @@ class UpdateDeveloperRequest extends FormRequest
             'email' => 'required|email|max:100',
             'age' => 'required|integer|min:1|max:999',
             'hobby' => 'required|string|max:100',
-            'birthDate' => 'required|date|date_format:Y-m-d'
+            'birthDate' => 'required|date|date_format:Y-m-d',
         ];
     }
 
     /**
      * Handle a failed validation attempt.
-     *
-     * @param Validator $validator
      */
     public function failedValidation(Validator $validator)
     {
         $response = response()->json([
             'success' => false,
             'metadata' => [
-                'message' => $validator->errors()->toArray()
+                'message' => $validator->errors()->toArray(),
             ],
-            'data' => []
+            'data' => [],
         ], ResponseAlias::HTTP_BAD_REQUEST);
 
         throw new HttpResponseException($response);

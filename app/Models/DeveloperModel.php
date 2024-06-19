@@ -13,18 +13,23 @@ use Ramsey\Uuid\Nonstandard\Uuid;
 class DeveloperModel extends Model
 {
     protected $primaryKey = 'id';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     protected $table = 'developers';
+
     protected $fillable = ['firstName', 'lastName', 'email', 'gender', 'age', 'hobby', 'birthDate'];
+
     protected $hidden = ['created_at', 'updated_at'];
+
     protected $dateFormat = 'Y-m-d';
+
     public $timestamps = true;
 
     /**
      * The "booting" method of the model.
-     *
-     * @return void
      */
     protected static function boot(): void
     {
@@ -39,9 +44,12 @@ class DeveloperModel extends Model
         });
     }
 
+    /**
+     * Prepare and generate UUID
+     */
     private function prepareAndgenerateUuid(): void
     {
-        if (!$this->getKey()) {
+        if (! $this->getKey()) {
             $this->{$this->getKeyName()} = Uuid::uuid4()->toString();
         }
         $this->prepareForStorage();
@@ -62,9 +70,6 @@ class DeveloperModel extends Model
 
     /**
      * Search by terms
-     *
-     * @param Request $request
-     * @return Paginator
      */
     public function searchByTerms(Request $request): Paginator
     {
@@ -74,15 +79,15 @@ class DeveloperModel extends Model
         $searchTerm = $request->input('searchTerm');
         $sorting = $request->input('sorting');
 
-        if (!empty($searchTerm)) {
+        if (! empty($searchTerm)) {
             $query->where(function ($query) use ($columns, $searchTerm) {
                 foreach ($columns as $column) {
-                    $query->orWhere($column, 'ilike', '%' . $searchTerm . '%');
+                    $query->orWhere($column, 'ilike', '%'.$searchTerm.'%');
                 }
             });
         }
 
-        if (!empty($sorting) && is_string($sorting)) {
+        if (! empty($sorting) && is_string($sorting)) {
             $sorting = json_decode($sorting, true);
             if (is_array($sorting)) {
                 foreach ($sorting as $sort) {
@@ -106,9 +111,6 @@ class DeveloperModel extends Model
 
     /**
      * Create a developer
-     *
-     * @param Request $request
-     * @return DeveloperModel
      */
     public function createDeveloper(Request $request): DeveloperModel
     {
@@ -119,15 +121,12 @@ class DeveloperModel extends Model
             'gender' => $request->input('gender', 'prefer-not-to-say'),
             'age' => $request->input('age'),
             'hobby' => $request->input('hobby'),
-            'birthDate' => $request->input('birthDate')
+            'birthDate' => $request->input('birthDate'),
         ]);
     }
 
     /**
      * Update a developer
-     *
-     * @param Request $request
-     * @param string $id
      */
     public function updateDeveloper(Request $request, string $id): void
     {
@@ -141,7 +140,7 @@ class DeveloperModel extends Model
                 'gender' => $request->input('gender', 'prefer-not-to-say'),
                 'age' => $request->input('age'),
                 'hobby' => $request->input('hobby'),
-                'birthDate' => $request->input('birthDate')
+                'birthDate' => $request->input('birthDate'),
             ]);
             $developer->save();
         }
@@ -149,8 +148,6 @@ class DeveloperModel extends Model
 
     /**
      * Delete a developer
-     *
-     * @param string $id
      */
     public function deleteDeveloperById(string $id): void
     {
@@ -160,9 +157,6 @@ class DeveloperModel extends Model
 
     /**
      * Get a developer by ID
-     *
-     * @param string $id
-     * @return Model|Collection|array|null
      */
     public function getDeveloperById(string $id): Model|Collection|array|null
     {

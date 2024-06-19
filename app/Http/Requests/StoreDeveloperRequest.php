@@ -31,7 +31,7 @@ class StoreDeveloperRequest extends FormRequest
             'email' => 'required|email|max:100',
             'age' => 'required|integer|min:1|max:999',
             'hobby' => 'required|string|max:100',
-            'birthDate' => 'required|date|date_format:Y-m-d'
+            'birthDate' => 'required|date|date_format:Y-m-d',
         ];
     }
 
@@ -40,9 +40,9 @@ class StoreDeveloperRequest extends FormRequest
         $response = response()->json([
             'success' => false,
             'metadata' => [
-                'message' => $validator->errors()->toArray()
+                'message' => $validator->errors()->toArray(),
             ],
-            'data' => []
+            'data' => [],
         ], ResponseAlias::HTTP_BAD_REQUEST);
 
         throw new HttpResponseException($response);
