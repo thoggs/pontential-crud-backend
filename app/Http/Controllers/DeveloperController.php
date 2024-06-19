@@ -14,9 +14,6 @@ class DeveloperController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
@@ -25,7 +22,7 @@ class DeveloperController extends Controller
 
         return DeveloperResource::make(
             $developers,
-            array('message' => array('retrieved' => ['Developers retrieved successfully'])),
+            ['message' => ['retrieved' => ['Developers retrieved successfully']]],
             boolval($developers->count())
         )
             ->response()
@@ -34,9 +31,6 @@ class DeveloperController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreDeveloperRequest $request
-     * @return JsonResponse
      */
     public function store(StoreDeveloperRequest $request): JsonResponse
     {
@@ -46,7 +40,7 @@ class DeveloperController extends Controller
 
         return DeveloperResource::make(
             $developer,
-            array('message' => array('created' => ['Developer created successfully'])),
+            ['message' => ['created' => ['Developer created successfully']]],
             boolval($developer)
         )
             ->response()
@@ -55,9 +49,6 @@ class DeveloperController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param string $id
-     * @return JsonResponse
      */
     public function show(string $id): JsonResponse
     {
@@ -67,7 +58,7 @@ class DeveloperController extends Controller
         if ($developer) {
             return DeveloperResource::make(
                 $developer,
-                array('message' => array('retrieved' => ['Developer retrieved successfully'])),
+                ['message' => ['retrieved' => ['Developer retrieved successfully']]],
                 boolval($developer),
             )
                 ->response()
@@ -75,7 +66,7 @@ class DeveloperController extends Controller
         } else {
             return DeveloperResource::make(
                 $developer,
-                array('message' => array('notFound' => ['Developer not found in database'])),
+                ['message' => ['notFound' => ['Developer not found in database']]],
                 boolval($developer),
             )
                 ->response()
@@ -85,10 +76,6 @@ class DeveloperController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param UpdateDeveloperRequest $request
-     * @param string $id
-     * @return JsonResponse
      */
     public function update(UpdateDeveloperRequest $request, string $id): JsonResponse
     {
@@ -101,7 +88,7 @@ class DeveloperController extends Controller
 
             return DeveloperResource::make(
                 $updatedDeveloper,
-                array('message' => array('updated' => ['Developer updated successfully'])),
+                ['message' => ['updated' => ['Developer updated successfully']]],
                 boolval($updatedDeveloper),
             )
                 ->response()
@@ -109,7 +96,7 @@ class DeveloperController extends Controller
         } else {
             return DeveloperResource::make(
                 $developer,
-                array('message' => array('notFound' => ['Developer not found in database'])),
+                ['message' => ['notFound' => ['Developer not found in database']]],
                 boolval($developer),
             )
                 ->response()
@@ -119,9 +106,6 @@ class DeveloperController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param string $id
-     * @return JsonResponse
      */
     public function destroy(string $id): JsonResponse
     {
@@ -133,7 +117,7 @@ class DeveloperController extends Controller
 
             return DeveloperResource::make(
                 $developer,
-                array('message' => array('deleted' => ['Developer deleted successfully'])),
+                ['message' => ['deleted' => ['Developer deleted successfully']]],
                 boolval($developer),
             )
                 ->response()
@@ -141,7 +125,7 @@ class DeveloperController extends Controller
         } else {
             return DeveloperResource::make(
                 $developer,
-                array('message' => array('notFound' => ['Developer not found in database'])),
+                ['message' => ['notFound' => ['Developer not found in database']]],
                 boolval($developer),
             )
                 ->response()

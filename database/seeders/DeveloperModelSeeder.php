@@ -15,11 +15,11 @@ class DeveloperModelSeeder extends Seeder
                 'id' => Uuid::uuid4()->toString(),
                 'firstName' => 'Thiago',
                 'lastName' => 'Rodrigues',
-                'email' => 'thiago.rodrigues' . $i . '@example.com',
+                'email' => 'thiago.rodrigues'.$i.'@example.com',
                 'gender' => 'heterosexual',
                 'age' => 33,
                 'hobby' => 'Programar e estudar',
-                'birthDate' => '1991-03-10'
+                'birthDate' => '1991-03-10',
             ]);
         }
     }
