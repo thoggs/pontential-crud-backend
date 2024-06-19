@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDeveloperRequest;
-use App\Http\Requests\UpdateDevelopersRequest;
+use App\Http\Requests\UpdateDeveloperRequest;
 use App\Http\Resources\DeveloperResource;
 use App\Models\DeveloperModel;
 use Illuminate\Http\JsonResponse;
@@ -86,11 +86,11 @@ class DeveloperController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateDevelopersRequest $request
+     * @param UpdateDeveloperRequest $request
      * @param string $id
      * @return JsonResponse
      */
-    public function update(UpdateDevelopersRequest $request, string $id): JsonResponse
+    public function update(UpdateDeveloperRequest $request, string $id): JsonResponse
     {
         $developersModel = new DeveloperModel();
         $developer = $developersModel->getDeveloperById($id);
