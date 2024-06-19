@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Ramsey\Uuid\Uuid;
 
 class DeveloperModel extends Model
 {
@@ -31,9 +30,6 @@ class DeveloperModel extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string)Uuid::uuid4();
-            }
             $model->formatAttributes();
         });
 
@@ -43,7 +39,7 @@ class DeveloperModel extends Model
     }
 
     /**
-     * Format attributes before saving
+     * Format attributes
      */
     private function formatAttributes(): void
     {
@@ -52,7 +48,7 @@ class DeveloperModel extends Model
         $this->email = strtolower($this->email);
         $this->gender = strtolower($this->gender);
         $this->hobby = ucfirst(strtolower($this->hobby));
-        $this->age = (int)$this->age;
+        $this->age = intval($this->age);
     }
 
     /**
