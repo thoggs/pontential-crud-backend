@@ -17,8 +17,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8080:80'
-    volumes:
-      - .docker/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
     depends_on:
       - db
     environment:
