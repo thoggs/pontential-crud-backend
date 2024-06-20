@@ -73,4 +73,4 @@ respondendo na porta `5432`
 
 ### License
 
-Project license [MIT license](https://opensource.org/licenses/MIT)
+Project license [Apache-2.0](https://opensource.org/license/apache-2-0)
