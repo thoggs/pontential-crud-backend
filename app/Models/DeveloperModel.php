@@ -47,10 +47,13 @@ class DeveloperModel extends Model
     /**
      * Prepare and generate UUID
      */
-    private function prepareAndgenerateUuid(): void
+    private function prepareAndGenerateUuid(): void
     {
         if (! $this->getKey()) {
-            $this->{$this->getKeyName()} = Uuid::uuid4()->toString();
+            $email = $this->email;
+            $bytes = md5($email, true);
+            $uuid = Uuid::uuid8($bytes);
+            $this->{$this->getKeyName()} = $uuid->toString();
         }
         $this->prepareForStorage();
     }

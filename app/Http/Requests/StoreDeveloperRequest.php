@@ -28,7 +28,7 @@ class StoreDeveloperRequest extends FormRequest
         return [
             'firstName' => 'required|string|max:50',
             'lastName' => 'required|string|max:50',
-            'email' => 'required|email|max:100',
+            'email' => 'required|email|max:100|unique:developers,email',
             'age' => 'required|integer|min:1|max:999',
             'hobby' => 'required|string|max:100',
             'birthDate' => 'required|date|date_format:Y-m-d',
