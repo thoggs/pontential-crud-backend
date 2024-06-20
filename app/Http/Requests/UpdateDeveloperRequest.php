@@ -25,10 +25,12 @@ class UpdateDeveloperRequest extends FormRequest
      */
     public function rules(): array
     {
+        $developerId = $this->route('developer');
+
         return [
             'firstName' => 'required|string|max:50',
             'lastName' => 'required|string|max:50',
-            'email' => 'required|email|max:100',
+            'email' => 'required|email|max:100|unique:developers,email,'.$developerId,
             'age' => 'required|integer|min:1|max:999',
             'hobby' => 'required|string|max:100',
             'birthDate' => 'required|date|date_format:Y-m-d',

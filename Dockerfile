@@ -29,6 +29,9 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copy project files
 COPY . .
 
+# Copy Apache configuration file
+COPY .docker/apache/default.conf /etc/apache2/sites-enabled/000-default.conf
+
 # Install dependencies with Composer
 RUN composer install --optimize-autoloader --no-dev
 
