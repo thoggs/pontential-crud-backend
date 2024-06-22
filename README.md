@@ -48,7 +48,8 @@ project-root/
 ├── storage/
 ├── tests/
 ├── Dockerfile
-└── docker-compose.yml
+├── docker-compose.yml
+└── ...
 ```
 
 ## Pré-requisitos
