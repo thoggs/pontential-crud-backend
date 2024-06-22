@@ -1,3 +1,5 @@
+# Pontential API
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -7,25 +9,62 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Subindo localmente
+## Descrição
 
-### Requisitos:
+API RESTful desenvolvida com a finalidade de servir como backend para o
+projeto [Pontential](https://github.com/thoggs/pontential-crud-frontend)
 
-- [x] Ter o [Docker](https://www.docker.com/) instalado.
-- [x] Ter o GIT instalado.
+## Estrutura do Projeto
 
-### Clonando e subindo um container Docker do Laravel com Apache2 na porta 8080:
+```
+project-root/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Controller.php
+│   │   │   └── DeveloperController.php
+│   │   ├── Middleware/
+│   │   │   └── ValidateUUID.php
+│   │   ├── Requests/
+│   │   │   ├── StoreDeveloperRequest.php
+│   │   │   └── UpdateDeveloperRequest.php
+│   │   ├── Resources/
+│   │   │   └── DeveloperResource.php
+│   │   ├── Models/
+│   │   │   └── DeveloperModel.php
+│   │   └── Providers/
+│   │       └── AppServiceProvider.php
+├── bootstrap/
+├── config/
+├── database/
+│   ├── factories/
+│   ├── migrations/
+│   ├── seeders/
+│   └── .gitignore
+├── public/
+├── resources/
+├── routes/
+│   └── api.php
+├── storage/
+├── tests/
+├── Dockerfile
+└── docker-compose.yml
+```
 
-1) Rode o comando em um terminal Linux/macOS ou Prompt de comando do Windows:
+## Pré-requisitos
 
-```sh
+- Ter o [Docker](https://www.docker.com/) instalado
+- Ter o [GIT](https://git-scm.com/downloads) instalado
+
+## Inicialização Rápida
+
+Rode o comando em um terminal Linux/macOS ou Prompt de comando do Windows:
+
+```bash
 git clone https://github.com/thoggs/pontential-crud-backend.git && cd pontential-crud-backend && docker-compose up -d
 ```
 
-### Concluído:
-
-Agora temos o Laravel rodando em http://localhost:8080/api/developers e apontando para o container PostgreSQL que está
-respondendo na porta `5432`
+> O projeto estará disponível em http://localhost:8080/api/developers
 
 ## Descrição da API
 
@@ -71,6 +110,6 @@ respondendo na porta `5432`
 
 - **DELETE /api/developers/{id}**: exclui um registro de desenvolvedor existente.
 
-### License
+## License
 
 Project license [Apache-2.0](https://opensource.org/license/apache-2-0)
